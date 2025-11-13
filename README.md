@@ -21,23 +21,20 @@ Each agent independently analyzes code, then results are consolidated into a com
 
 ### Installation
 
-1. Clone and setup:
+**See [SETUP.md](SETUP.md) for detailed setup instructions.**
+
+Quick start:
 ```bash
 git clone <this-repo>
 cd agentic-code-reviewer
+
+# Install dependencies (choose one)
+pip install -r requirements.txt              # pip
+poetry install -E web                        # poetry with all features
+
+# Configure
 cp .env.example .env
-# Edit .env and add your ANTHROPIC_API_KEY
-```
-
-2. Install dependencies:
-```bash
-# Core dependencies
-pip install anthropic pydantic python-dotenv
-
-# For web dashboard and GitHub integration
-pip install -e ".[web]"
-# or
-pip install flask requests
+# Edit .env and add ANTHROPIC_API_KEY
 ```
 
 ### Usage
@@ -90,12 +87,22 @@ app.run(port=5000)
 
 **Run examples:**
 ```bash
-# Basic synchronous example
-python examples/basic_example.py
+# Using make (recommended)
+make run-example      # Basic example
+make run-async        # Async example
+make run-web          # Web dashboard
 
-# Async example with multiple languages
+# Or directly
+python examples/basic_example.py
 python examples/async_example.py
+python app.py
 ```
+
+## 📚 Documentation
+
+- **[SETUP.md](SETUP.md)** - Detailed installation and configuration guide
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Contributing guidelines and development workflow
+- **[Makefile](Makefile)** - Common commands and development tasks
 
 ## 📁 Project Structure
 
@@ -195,9 +202,48 @@ MIT
 
 ## 🤝 Contributing
 
-Contributions welcome! This is a portfolio project, but feel free to fork and extend it.
+Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for:
+- Code style guidelines
+- Testing requirements
+- Pull request process
+- Adding new agents or language support
+- Bug reports and feature requests
+
+## 📦 Project Files
+
+- `src/` - Main source code
+- `tests/` - Unit and integration tests
+- `examples/` - Usage examples
+- `scripts/` - Utility scripts for automation
+- `.github/workflows/` - CI/CD configuration
+- `Makefile` - Common development commands
+- `pyproject.toml` - Poetry configuration
+- `requirements.txt` - Pip dependencies
+- `pytest.ini` - Pytest configuration
+- `.pre-commit-config.yaml` - Pre-commit hooks
+
+## 🧪 Testing
+
+Run tests with:
+```bash
+make test              # Run tests
+make test-cov          # With coverage report
+make quality           # Code quality checks
+make dev               # Full development workflow
+```
+
+## 📊 Development
+
+```bash
+make dev-install       # Install dev dependencies
+make format            # Format code with black
+make lint              # Check code quality
+make type-check        # Type checking with mypy
+```
 
 ---
 
 **Built with ❤️ using Anthropic's Claude API**
+
+*Demonstrates: agentic AI • async processing • web frameworks • GitHub integration • multi-language analysis*
 
