@@ -1,5 +1,6 @@
 """Agent orchestrator that coordinates multiple review agents."""
 
+import asyncio
 from typing import Optional
 from .models import CodeReviewReport, AgentReview
 from .agent import ReviewAgent
@@ -101,3 +102,66 @@ class CodeReviewOrchestrator:
             if first_review.findings:
                 return first_review.findings[0].agent
         return "Unknown File"
+
+    async def review_code_async(self, code: str, file_path: str) -> CodeReviewReport:
+        """
+        Run all registered agents asynchronously (in parallel) on the code.
+
+        Args:
+            code: Source code to review
+            file_path: Path to the file
+
+        Returns:
+            Consolidated CodeReviewReport
+        """
+        # Run all agents in parallel using asyncio.gather
+        tasks = [
+            agent.analyze_code_async(code, file_path)
+            for agent in self.agents.values()
+        ]
+
+        reviews = await asyncio.gather(*tasks)
+        agent_reviews = {agent.name: review for agent, review in zip(self.agents.values(), reviews)}
+        all_findings = []
+
+        for review in reviews:
+            all_findings.extend(review.findings)
+
+        # Count severity levels
+        severity_counts = {
+            "critical": sum(1 for f in all_findings if f.severity == "critical"),
+            "high": sum(1 for f in all_findings if f.severity == "high"),
+            "medium": sum(1 for f in all_findings if f.severity == "medium"),
+            "low": sum(1 for f in all_findings if f.severity == "low"),
+            "info": sum(1 for f in all_findings if f.severity == "info"),
+        }
+
+        # Sort findings by severity
+        severity_order = {"critical": 0, "high": 1, "medium": 2, "low": 3, "info": 4}
+        sorted_findings = sorted(
+            all_findings, key=lambda f: (severity_order.get(f.severity, 5), f.line_number or 0)
+        )
+
+        # Top recommendations from critical/high findings
+        top_recommendations = []
+        for finding in sorted_findings[:5]:  # Top 5 recommendations
+            if finding.recommendation and finding.recommendation not in top_recommendations:
+                top_recommendations.append(finding.recommendation)
+
+        # Build consolidated summary
+        consolidated_summary = self._build_summary(agent_reviews, severity_counts)
+
+        report = CodeReviewReport(
+            file_name=file_path,
+            total_issues=len(all_findings),
+            critical_count=severity_counts["critical"],
+            high_count=severity_counts["high"],
+            medium_count=severity_counts["medium"],
+            low_count=severity_counts["low"],
+            info_count=severity_counts["info"],
+            agent_reviews=agent_reviews,
+            consolidated_summary=consolidated_summary,
+            top_recommendations=top_recommendations,
+        )
+
+        return report
