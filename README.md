@@ -42,7 +42,7 @@ Nexora Africa Cloud is a cloud infrastructure provider under development for hos
 
 **What stands out:** The project combines an Africa-focused cloud offering with established infrastructure technologies and open tooling. Nexora’s own work centers on the customer experience, automation, service management, and operations. This approach supports a broader cloud platform while giving developers familiar tools and interfaces to work with.
 
-These projects are in active development. The benefits above describe their intended value; comparative performance, cost, and reliability claims require measured results.
+These projects are in active development.
 
 ## Technical toolkit
 
