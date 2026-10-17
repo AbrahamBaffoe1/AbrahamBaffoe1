@@ -8,23 +8,25 @@ A central focus of my work is making technology useful for African markets: spee
 
 [Nexora Labs](https://nexoralab.net) · [Public repositories](https://github.com/AbrahamBaffoe1?tab=repositories) · [Contact](mailto:abraham@nexoralab.net)
 
-## What I’m building
+## The mission behind my work
 
-### Nexora VoicePay
+Through Nexora Labs, my mission is to help build the technological foundations that let African people and businesses create, transact, and grow on their own terms. That means making financial services easier to use, making AI understand the languages people actually speak, and building infrastructure that supports local innovation and global ambition.
 
-Payment infrastructure with multilingual voice as an interface. The work brings together payment intents, provider integrations, accounting, and merchant experiences. My focus is connecting natural speech to explicit confirmation and authorization, with reliable transaction handling underneath.
+### Nexora VoicePay — make financial participation easier
 
-### African-language speech AI
+VoicePay’s mission is to build payment infrastructure that lets people and businesses transact securely and naturally, regardless of language or technical familiarity. The ambition extends from everyday purchases to the financial connections businesses need to operate and grow. By making payments accessible through familiar ways of communicating, VoicePay aims to reduce the distance between people and the digital economy, while giving businesses a dependable foundation for serving them.
 
-Speech recognition and voice applications, starting with Twi and extending to Ga, Ewe, and Hausa. The work includes dataset preparation, model adaptation, evaluation, and serving, with attention to code-switching and everyday financial conversations.
+### Sovereign Voice Platform — give African languages a place in AI
 
-Explore the public [Sovereign Voice Platform](https://github.com/AbrahamBaffoe1/sovereign-voice-platform) repository for the engineering approach and current status.
+The mission is to make African languages a first-class part of how people interact with technology. People should be able to learn, work, access services, and build products in their own languages, including the way they naturally mix languages in conversation. Starting with Ghanaian languages and growing beyond them, the long-term goal is to help African communities and developers shape voice AI around their own needs, knowledge, and identities.
 
-### Nexora Africa Cloud
+[Explore the Sovereign Voice Platform](https://github.com/AbrahamBaffoe1/sovereign-voice-platform)
 
-An API-first cloud infrastructure platform focused on African markets. The work covers tenant isolation, infrastructure orchestration, service identity, and developer tooling, using established infrastructure technologies behind a consistent customer API.
+### Nexora Africa Cloud — build the foundation for digital independence
 
-These are active development efforts. Available repositories document their scope and implementation status.
+Nexora Africa Cloud’s mission is to build an Africa-native cloud provider that gives developers, businesses, and institutions the foundation to create, run, and scale digital services. The ambition is to support the full journey from an idea to a business operating at scale, with infrastructure shaped by regional needs and built to serve global markets. Its purpose is to give African builders greater choice and control over the technology their businesses depend on.
+
+These missions guide active development; they describe the long-term direction of the projects.
 
 ## Technical toolkit
 
